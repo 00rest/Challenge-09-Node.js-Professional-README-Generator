@@ -20,6 +20,10 @@ A command-line application that accepts user input. When you are prompted for in
 
 ![screenshot](./assets/images/screenshot.jpg)
 
+![walktrough](./assets/images/walktrough.gif)
+
+[Walktrough video](./assets/video/walktrough.webm)
+
 ## License
 MIT License
 
