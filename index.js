@@ -4,38 +4,38 @@ console.log('This is working');
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown');
+const lic = require('./utils/data');
+
+//console.log(lic);
+//console.log(questions);
 
 
 // TODO: Create an array of questions for user input
-const licChoice = ['None', 'GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense']
+const licChoice = [];
 const questions = [
     { type: 'input', name: 'title', message: 'Project title:' },
     // { type: 'input', name: 'description', message: 'Description:' },
     // { type: 'input', name: 'install', message: 'Installation instructions:' },
     // { type: 'input', name: 'usage', message: 'Usage information:' },
-    // { type: 'list', name: 'lic', message: 'Select a license', choices: licChoice },
+    { type: 'list', name: 'license', message: 'Select a license', choices: licChoice },
     // { type: 'input', name: 'contributung', message: 'Contribution guidelines' },
     // { type: 'input', name: 'test', message: 'Test instructions' },
 ];
+lic.forEach((element) => { licChoice.push(element.name) });
+//console.log(licChoice);
 
 
 // TODO: Create a function to write README file
 function writeToFile(data) {
     console.log('starting to write to file');
-    fs.writeFile('testingFS.txt', data, (err) =>
-        err ? console.error(err) : console.log('Success!')
-    );
+    fs.writeFile('testingFS.md', data, (err) => err ? console.error(err) : console.log('Success!'));
 };
 
 // TODO: Create a function to initialize app
 function init() {
     inquirer
         .prompt(questions)
-        .then((answers) => {
-            console.log(answers);
-            var answer = JSON.stringify(answers.title);
-            writeToFile(answer);
-        });
+        .then((answers) => { writeToFile(generateMarkdown(lic, answers)) })
 };
 
 // Function call to initialize app
