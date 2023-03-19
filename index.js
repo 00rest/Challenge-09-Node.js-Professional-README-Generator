@@ -24,7 +24,7 @@ lic.forEach((element) => { licChoice.push(element.name) });
 
 // TODO: Create a function to write README file
 function writeToFile(data) {
-    fs.writeFile('README.md', data, (err) => err ? console.error(err) : console.log('Success!'));
+    fs.writeFile('README2.md', data, (err) => err ? console.error(err) : console.log('Success!'));
 };
 
 // TODO: Create a function to initialize app
